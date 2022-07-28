@@ -1,0 +1,8 @@
+git init
+git remote add origin yourShhKey
+git add .
+git commit -m "your message"
+git status
+git branch
+git push origin branchName
+git push origin main
