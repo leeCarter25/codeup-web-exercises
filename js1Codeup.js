@@ -141,6 +141,6 @@ var offer = product > 2
 var premium = false
 
 var username = 'codeup';
-var password = 'notstrongpassword'
+var password = 'notstrongpassword';
 var isPwdLong = password.length >= 5
 var isPwdUnique = password.toLowerCase.indexOf(username)
