@@ -1,4 +1,9 @@
 "use strict";
+alert('Welcome to my Website!')
+var response = '';
+response = prompt('What\'s your fav color?')
+response = alert('Cool, ' + response + ' is my fav color too!');
+
 var response = "";
 while(response === "") {
     response = prompt("what number of days total did you rent the kids movies?");
