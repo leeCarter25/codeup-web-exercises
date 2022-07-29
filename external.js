@@ -1,4 +1,5 @@
 "use strict";
+console.log('Hello from external JavaScript')
 alert('Welcome to my Website!')
 var response = '';
 response = prompt('What\'s your fav color?')
