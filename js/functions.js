@@ -9,7 +9,7 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
  function sayHello(name) {
-    console.log('hello, ' + name + '!');
+    return ('hello, ' + name + '!');
  }
 
  sayHello('rocket');
@@ -58,22 +58,11 @@ var random = Math.floor((Math.random() * 3) + 1);
  * different result everytime you refresh the page if you are using the random
  * number)
  */
-var isTwo = ['x', 'y', 'z'];
-
-function isTwo(x, y, z) {
-
-    if(isTwo === x) {
-        console.log(false);
-        if(isTwo === y) {
-            console.log(true);
-            if(isTwo === z) {
-                console.log(false);
-            }
-        }
-    }
-
+function isTwo(numb) {
+    return numb === 2;
 }
-console.log(random);
+console.log(isTwo(random));
+
 
 /**
  * TODO:
@@ -86,25 +75,23 @@ console.log(random);
  * > calculateTip(0.25, 25.50) // returns 6.375
  * > calculateTip(0.15, 33.42) // returns 5.013
  */
-var calculateTip = ['4', '6.375', '5.013'];
-function calculateTip() {
-    if (calculateTip === 0.20, 20) {
-        console.log(4);
-        if (calculateTip === 0.25, 25.50) {
-            console.log(6.375);
-            if (calculateTip === 0.15, 33.42) {
-                console.log(5.013);
-            }
-        }
-    }
+function calculateTip(tipPercent, totalBill) {
+    return(tipPercent * totalBill);
+
 }
-console.log(calculateTip);
+console.log(calculateTip(0.20, 20));
 /**
  * TODO:
  * Use prompt and alert in combination with your calculateTip function to
  * prompt the user for the bill total and a percentage they would like to tip,
  * then display the dollar amount they should tip
  */
+
+var userTip = prompt('how much do you want to tip?');
+var userBill = prompt('how much was your bill?');
+var userTipResult = calculateTip(userTip, userBill);
+alert('your tip should be ' + userTipResult);
+
 
 /**
  * TODO:
@@ -120,3 +107,7 @@ console.log(calculateTip);
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+function applyDiscount(price, discount) {
+    return console.log(price - (price * discount));
+}
+applyDiscount(45.99, 0.12);
