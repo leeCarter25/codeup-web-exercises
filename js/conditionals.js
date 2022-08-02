@@ -30,25 +30,23 @@
 var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-function analyzeColor(randomColor) {
-    analyzeColor 'red':
-    console.log('color is red');
-    break;
-    analyzeColor 'orange':
-    console.log ('oranges are orange');
-    break;
-    analyzeColor yellow:
-    console.log('the sun is yellow');
-    break;
-    analyzeColor (green):
-    console.log('grass is green');
-    break;
-    analyzeColor (blue):
-    console.log('the sky is blue');
-    break;
-default:
-    console.log('I don\'t know anything about indigo or violet');
+/*function analyzeColor(randomColor) {
+    if(randomColor === 'red') {
+        console.log('apples are red');
+    } else if(randomColor === 'orange') {
+        console.log('oranges or orange');
+    } else if(randomColor === 'yellow') {
+        console.log('the sun is yellow');
+    } else if(randomColor === 'green') {
+        console.log('grass is green');
+    } else if(randomColor === 'blue') {
+        console.log('the sky is blue');
+    } else {
+        console.log('I don\'t know anything by ' + randomColor);
+    }
+
 }
+analyzeColor('aqua');
 
 
 
@@ -58,10 +56,35 @@ default:
  * You should see a different message every time you refresh the page
  */
 
+//analyzeColor(randomColor);
+
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
+
+switch(randomColor) {
+    case 'red' :
+        console.log('that\'s a red light!');
+        break;
+    case 'orange' :
+        console.log('tangerines are orange');
+        break;
+    case 'yellow' :
+        console.log('That\'s a sunflower');
+        break;
+    case 'green' :
+        console.log('HULK SMASH!!!');
+        break;
+    case 'blue' :
+        console.log('blue eyed Dragon');
+        break;
+    default:
+        console.log('I don\'t know ' + randomColor);
+
+}
+
+
 
 /**
  * TODO:
@@ -69,6 +92,22 @@ default:
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
+
+
+var userColor = prompt('what is your fav color?');
+function analyzeColor(color) {
+    switch(color) {
+        case 'red' :
+            return 'Apples are red';
+        case 'orange' :
+            return 'oranges are orange';
+        default :
+            return 'your color is great!';
+
+    }
+
+}
+alert(analyzeColor(userColor));
 
 /* ########################################################################## */
 
@@ -91,6 +130,19 @@ default:
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
+function calculateTotal(luckyNumber, totalAmount) {
+    switch(luckyNumber) {
+        case 0: return totalAmount;
+        case 1 : return totalAmount - (totalAmount * 0.10)
+        case 2 : return totalAmount - (totalAmount * 0.25)
+        case 3 : return totalAmount - (totalAmount * 0.35)
+        case 4 : return totalAmount - (totalAmount * 0.50)
+        case 5 : return 'free';
+
+    }
+}
+calculateTotal(4, 100);
+
 
 /**
  * TODO:
@@ -100,8 +152,13 @@ default:
  * and alerts to display to the user what their lucky number was, what their
  * price before the discount was, and what their price after the discount is.
  */
-// Generate a random number between 0 and 6
-// var luckyNumber = Math.floor(Math.random() * 6);
+ //Generate a random number between 0 and 6
+ //var luckyNumber = Math.floor(Math.random() * 6);
+
+
+
+
+
 
 /**
  * TODO:
@@ -121,6 +178,31 @@ default:
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+//1. make a confirm that asks if a user would like to input a number
+//2. assign confirm in a variable that will be a boolean
+//3. if confirm variable is true then prompt a user for a number and store it in a variable
+//4. alert the number as even or odd
+//5. add 100 and alert number to a function
+//6. check if number is neg or pos and return that value
+//7. if user input is not a number then inform that the input was not a number
 
-
-
+var isTrue = confirm('would you give me a number?');
+if(isTrue) {
+    var thatNumber = prompt('give me that number');
+    if (isNaN(thatNumber)) {
+        alert('that is not a number');
+    } else {
+        if (thatNumber % 2 === 0) {
+            alert('that number is even');
+        } else if (thatNumber % 2 !== 0) {
+            alert('that number is odd');
+        }
+        var newNum = Number(thatNumber) + 100;
+        alert(`${thatNumber} + 100 = ${newNum}`);
+        if (thatNumber < 0) {
+            alert(`that number is negative ${thatNumber}`);
+        } else if (thatNumber > 0) {
+            alert(`that number is positive ${thatNumber}`);
+        }
+    }
+}
