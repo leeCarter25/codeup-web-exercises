@@ -28,6 +28,9 @@ console.log(person.lastName);
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
 
+    person.sayHello = function() {
+        return `Hello from ${person.firstName} ${person.lastName}!`;
+    }
 
 console.log(person.sayHello());
 
@@ -45,11 +48,34 @@ console.log(person.sayHello());
      * and console.log the relevant messages for each person
      */
 
+    //Key points
+        //1. HEB has an offer for those who spend $200+
+        //2. That offer is that they get %12 off
+        //personal TODO
+            //1.Use forEach to iterate through shoppers
+        //2.Display current total
+        //3.Write a conditional with the following:
+        //1.If shopper amount is > 200 apply and show discount
+        //2.If shopper amount is < 200 then return a message of 'no discount to be found'
+
+
      var shoppers = [
          {name: 'Cameron', amount: 180},
-         {name: 'Ryan', amount: 250, discount: 0.12},
-         {name: 'George', amount: 320, discount: 0.12}
+         {name: 'Ryan', amount: 250},
+         {name: 'George', amount: 320}
      ];
+
+   /*  shoppers.forEach(function(shopper:{amount: number, name: string}) {
+       console.log(shopper.amount)
+       if(shopper.amount > 200) {
+        var discountAmount = shopper.amount * .12;
+        console.log(`your discount is ${discountAmount}`);
+     var newTotal = shopper.amount - discountAmount;
+     console.log(`Your new total is ${newTotal}`);
+       } else {
+           console.log('no discount to be found')
+       }
+     })*/
 
 
 
@@ -70,41 +96,41 @@ console.log(person.sayHello());
             title: 'The richest man in babylon',
             author: {
                 firstName: 'George',
-                lastName: 'Clason',
+                lastName: 'Clason'
             }
             },{
 
             title: 'Meditations',
             author: {
                 firstName: 'Marcus',
-                lastName: 'Aurelius',
+                lastName: 'Aurelius'
             }
             },{
 
             title: 'Investing 101',
             author: {
                 firstName: 'Michele',
-                lastname: 'Cagan',
+                lastname: 'Cagan'
             }
             },{
 
             title: 'Stock Market Investing',
             author: {
                 firstName: 'Jason',
-                lastName: 'Kelly',
+                lastName: 'Kelly'
             }
             },{
             title: 'Sas Survival Handbook',
             author: {
                 firstName: 'John',
-                lastName: 'Wiseman',
+                lastName: 'Wiseman'
 
             }
         }
     ]
-    console.log(books[1].title);
-    console.log(books[1].author.firstName);
-    console.log(books[1].author.lastName);
+    console.log(books[2].title);
+    console.log(books[2].author.firstName);
+    console.log(books[2].author.lastName);
 
     /**
      * TODO:
@@ -131,6 +157,13 @@ console.log(person.sayHello());
      *      ...
      */
 
+   /* books.forEach(function(books, index){
+        console.log(`Book # ${index + 1}`);
+        console.log(`Title : ${book.title}`);
+        console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
+        console.log('---');
+    })*/
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -141,5 +174,29 @@ console.log(person.sayHello());
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+    var books = [];
+function createBook(title, author) {
+    var book = {
+        title: title,
+        author: author
+    }
+    books.push(book)
+    return book;
+    }
+    console.log(books);
+console.log(createBook('myBook', 'myAuthor'))
+    console.log(books);
+    console.log(createBook('cats', 'doctor'))
+    console.log(books);
 
+    function showBookInfo(book) {
+        console.log(`Book # ${index + 1}`);
+        console.log(`Title : ${book.title}`);
+        console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
+        console.log('---');
+    }
+    books.forEach(function(book, index) {
+        console.log(`Book # ${index + 1}`);
+        showBookInfo(book);
+    })
 })();
