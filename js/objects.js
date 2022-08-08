@@ -65,8 +65,8 @@ console.log(person.sayHello());
          {name: 'George', amount: 320}
      ];
 
-   /*  shoppers.forEach(function(shopper:{amount: number, name: string}) {
-       console.log(shopper.amount)
+   /*  shoppers.forEach(function(shopper) {
+       console.log(`Hey ${shopper.name} your total before discount would be: ${shopper.amount}`);
        if(shopper.amount > 200) {
         var discountAmount = shopper.amount * .12;
         console.log(`your discount is ${discountAmount}`);
@@ -157,7 +157,7 @@ console.log(person.sayHello());
      *      ...
      */
 
-   /* books.forEach(function(books, index){
+   /* books.forEach(function(book, index){
         console.log(`Book # ${index + 1}`);
         console.log(`Title : ${book.title}`);
         console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
@@ -180,7 +180,7 @@ function createBook(title, author) {
         title: title,
         author: author
     }
-    books.push(book)
+    books.push(book);
     return book;
     }
     console.log(books);
@@ -190,13 +190,13 @@ console.log(createBook('myBook', 'myAuthor'))
     console.log(books);
 
     function showBookInfo(book) {
-        console.log(`Book # ${index + 1}`);
-        console.log(`Title : ${book.title}`);
+      //  console.log(`Book # ${index + 1}`);
+        console.log(`Title: ${book.title}`);
         console.log(`Author: ${book.author.firstName} ${book.author.lastName}`);
         console.log('---');
     }
     books.forEach(function(book, index) {
         console.log(`Book # ${index + 1}`);
         showBookInfo(book);
-    })
+    });
 })();
