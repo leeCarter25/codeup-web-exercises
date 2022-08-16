@@ -36,9 +36,16 @@ em {
 body {
     background-color: beige;
     background-image: url('/images/full_grass.png');
+    margin: 50px auto;
+    width: 500px;
+    padding: 10px;
+    color: black;
+    text-decoration: underline;
+    text-align: center;
 }
 th td {
-    border: 1px solid black;
+    font-family: fantasy;
+    padding: 50px;
 }
 a {
 
@@ -73,5 +80,13 @@ ul.b {
     list-style-type: disc;
 }
 ul.c {
+    list-style-type: square;
+}
+footer {
+    text-align: center;
+    list-style-type: square;
+}
+main {
+    text-align: center;
     list-style-type: square;
 }
