@@ -8,23 +8,70 @@
 /*  selector for all "h1" elements
     that are a descendent of id="container"
     and have a class of "fancy-header" */
-selector-todo {
-    color: blue;
+#container h1.fancy-header {
+    color: red;
     text-decoration: underline;
+    text-align: center;
 }
-
 /* selector for all "em" elements */
-selector-todo {
+em {
     font-weight: bold;
 }
 
 /* selector for all elements with class="article" */
-selector-todo {
+.article {
     clear:both;
+    list-style-type: upper-roman;
 }
 
 /*  selector for all "anchor" elements
     that are a direct child of an element with class="article" */
-selector-todo {
+.article>a {
     float:right;
+}
+.p1 {
+    font-family: cursive;
+
+}
+body {
+    background-color: beige;
+    background-image: url('/images/full_grass.png');
+}
+th td {
+    border: 1px solid black;
+}
+a {
+
+}
+
+a:link {
+    color: #011453;
+}
+
+a:visited {
+    color: #7a1641;
+}
+
+a:focus {
+    border-bottom: 1px solid;
+    background: #98e4cd;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+    background: #feaaaa;
+}
+
+a:active {
+    background: #533901;
+    color: #d0aafe;
+}
+ul.a {
+    list-style-type: circle;
+}
+ul.b {
+    list-style-type: disc;
+}
+ul.c {
+    list-style-type: square;
 }
