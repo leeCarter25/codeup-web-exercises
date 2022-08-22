@@ -1,0 +1,17 @@
+
+    .jumbotron {
+        height: 346px;
+        background-size: cover;
+        background-image: url('../images/pizza-bootstrap.png');
+
+    }
+    div .p-3{
+        display: flex;
+        justify-content: center;
+        opacity: 70%;
+
+    }
+    .tab-content .p-3 {
+        display: flex;
+        justify-content: flex-start;
+    }
