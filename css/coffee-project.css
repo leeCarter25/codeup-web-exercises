@@ -1,0 +1,45 @@
+table {
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+}
+.form-select {
+    width: 40%;
+    margin-left: 39em;
+}
+#coffee-name {
+    margin-top: 1em;
+}
+#name {
+    margin-top: 1em;
+}
+.btn-primary {
+    margin-top: 1em;
+    width: 40%;
+    margin-left: 39.5em;
+}
+.form-control {
+    width: 40%;
+    padding-left: 10em;
+    margin-left: 45em;
+}
+h6 {
+    margin-right: 8em;
+}
+div hr {
+    width: 42%;
+    margin-left: 39em;
+}
+div h1 {
+    display: flex;
+    justify-content: flex-end;
+
+}
