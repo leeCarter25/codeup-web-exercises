@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountaineer Project</title>
+    <link rel="stylesheet" href="../css/mountaineer-project.css">
+</head>
+<body>
+
+<img src="../images/mountaineerproject.png" alt="mountaineerproject">
+
+<a id="top"></a>
+<nav class="navbar">
+
+    <ul class="nav-list" id="navi-list">
+        <li class="list-item">
+            <a href="#">HOME</a>
+        </li>
+        <li class="list-item">
+            <a href="#">ABOUT</a>
+        </li>
+        <li class="list-item">
+            <a href="#">MOUNTAINS</a>
+        </li>
+        <li class="list-item">
+            <a href="#">GEAR</a>
+        </li>
+    </ul>
+    <div class="menu" id="toggle-button">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+    </div>
+</nav>
+<div>
+    <img src="https://i.guim.co.uk/img/media/1ba9bd4ca9e43b21553fe633830acd6fa1f6071c/0_0_2832_4256/master/2832.jpg?width=620&quality=45&fit=max&dpr=2&s=0d9617cb567fefcee8c53883c87b6220" alt='MOUNTAIN MAN'>
+</div>
+<a href="#top">Back to top</a>
+
+</body>
+<script>
+    const toggleButton = document.getElementById('toggle-button');
+    const naviList = document.getElementById('navi-list');
+
+    toggleButton.addEventListener('click', () => {
+        naviList.classList.toggle('active');
+    })
+</script>
+</html>
