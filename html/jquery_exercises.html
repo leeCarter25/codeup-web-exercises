@@ -6,12 +6,12 @@
 </head>
 <body>
 
-<h1>JQuery Learning</h1>
+<h1 class="header">JQuery Learning</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias autem beatae consequuntur dicta dolorum esse est fugit, ipsa nisi officiis praesentium provident quidem quis quod rem rerum voluptas! Corporis, explicabo?</p>
 <div>
     <ul class="option1" id="option2">
-        <li>class1</li>
-        <li>class2</li>
+        <li id="class-time">class1</li>
+        <li id="class-time2">class2</li>
     </ul>
 </div>
 <div>
@@ -26,7 +26,38 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="../js/jquery_exercises.js"></script>
+<!--<script src="../js/jquery_exercises.js"></script>-->
+<script>
+<!--    make a class in the h1. Add a click function. Use (this) keyword to grab the class of header. Use css to change background color of the class of header within the h1 element on a single click.  -->
+    $('.header').click(
+        function() {
+            $(this).css('background-color', '#FF0');
+        },
+        // function() {
+        //     $(this).css('background-color', '#FF0');
+        // }
+    );
+    //Grab the class of chop-chop in the p tag add a click function. Grab the id of option 3 and assign it a double click plus use this keyword to snatch the id in the function, so when I double click the p tag text, font size changes to 18px.
+    $( ".chop-chop" ).click(function() {
+        $( "#option3" ).dblclick(this).css('font-size', '18px');
+    });
+    // Create a variable that has the values of the Li's within a class. create a variable using the hover function for hovering onto the text, that changes the background color of when my mouse touches the text to red.
+    var classTime = $('#class-time, #class-time2');
+    var hoverIn = function () {
+        classTime.css('background', 'red');
+
+    }
+    //Create a variable that uses the function hover. Use css that changes the background color to back to normal when my mouse get's off of the text.
+    var hoverOut = function () {
+        classTime.css('background', 'none');
+
+    }
+    //The created variable classTime is used with a chain of the hover Keyword, and the variables hoverIn, hoverOut, to show our results.
+    classTime.hover(hoverIn, hoverOut);
+
+
+
+</script>
 
 </body>
 </html>
