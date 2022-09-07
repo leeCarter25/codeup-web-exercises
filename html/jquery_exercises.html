@@ -27,8 +27,8 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <!--<script src="../js/jquery_exercises.js"></script>-->
-<script>
 <!--    make a class in the h1. Add a click function. Use (this) keyword to grab the class of header. Use css to change background color of the class of header within the h1 element on a single click.  -->
+<script>
     $('.header').click(
         function() {
             $(this).css('background-color', '#FF0');
@@ -44,12 +44,12 @@
     // Create a variable that has the values of the Li's within a class. create a variable using the hover function for hovering onto the text, that changes the background color of when my mouse touches the text to red.
     var classTime = $('#class-time, #class-time2');
     var hoverIn = function () {
-        classTime.css('background', 'red');
+        classTime.css('color', 'red');
 
     }
     //Create a variable that uses the function hover. Use css that changes the background color to back to normal when my mouse get's off of the text.
     var hoverOut = function () {
-        classTime.css('background', 'none');
+        classTime.css('color', 'black');
 
     }
     //The created variable classTime is used with a chain of the hover Keyword, and the variables hoverIn, hoverOut, to show our results.

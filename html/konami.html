@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<!--<p>Please type something into this form:</p>-->
+<!--<form>-->
+<!--    <input type="text" id="textfield" name="textfield" placeholder="Type Here"/>-->
+<!--</form>-->
+
+<!--<script src="../js/jquery.js"></script>-->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+    // $('#textfield').keydown(function(e) {
+    //     console.log('A key was pushed down!');
+    //     console.log(e.key);
+    // });
+
+    // $('h1').on('click', function (){
+    //     $(this)
+    // })
+    // window.addEventListener('keydown', checkKeyDown, false);
+    // function checkKeyDown(e) {
+    //     if(e.keyCode == '38') {
+    //         alert('You have added 30 lives!');
+    //     }
+    //     console.log(e.keyCode);
+    // }
+
+
+    // $(document).keyup(function(event){
+    //     var expected = ['38', '38', '40', '40', '37', '39', '37', '39', '66', '65', '13'];
+    //     var actual = expected;
+    //     if(event.keyCode == actual) {
+    //         alert('You have added 30 Lives!');
+    //     }
+    //     console.log(event.keyCode);
+    // });
+
+    // $(document).on("keypress", "input", function(e){
+    //     if(e.key == '13'){
+    //         var inputVal = $(this).val();
+    //         alert("You have added 30 lives!: " + inputVal);
+    //     }
+    // });
+    let code = '38 38 40 40 37 39 37 39 66 65 13';
+    let cheatCode = '';
+    $(document).keyup(function(event){
+       cheatCode += ` ${event.keyCode}`
+        console.log(event.keyCode);
+       console.log(cheatCode);
+       if(cheatCode.trim() === code) {
+           $('body').css('background-color', 'red').css('text-color', 'white');
+           alert('You gained 30 lives!')
+       }
+    });
+</script>
+
+</body>
+</html>
