@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+   <!-- <link rel="stylesheet" href="styles.css"> -->
+
+
+
+</head>
+<body>
+<div class="jumbotron" style="margin-bottom:0px; color:white; background-color: rgba(0, 0, 255, 0.78);">
+    <h2 class="text-left" style="font-size:45px; font-weight:300;">Weather App</h2>
+    <h6 style="font-size:20px; font-weight:100;">Current city: Dallas</h6>
+</div>
+<div>
+    Place <input type="text" placeholder> <button type="button" 
+    type="button" class="btn-primary"
+        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;">Find
+</button>
+
+
+</div>
+<!-- <div class="container">
+    <div class="current-info">
+    <div class="date-container">
+        <div class="date" id="date">
+            2022-04-06
+        </div>
+        <div class="others" id="current-weather-items">
+            <div class="temp">75.43°F / 75.43°F</div>
+            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+            <div class="weather-item">
+                <p>Description: overcast clouds</p>
+            </div>
+            <div class="weather-item">
+            <p>Humidity: 71</p> 
+        </div>
+        <div class="weather-item">
+            <p>Wind: 5.84</p>
+        </div>
+        <div class="weather-item">
+            <p>Pressure: 1015</p>
+        </div>
+        </div>
+    </div>
+</div> -->
+
+
+</div>
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+      2022-04-06
+    </div>
+    <ul class="list-group list-group-flush" id="current-weather-items">
+      <li class="temp">75.43°F / 75.43°F </li>
+      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+      <hr>
+      <li class="weather-item">Humidity: 71</li>
+      <hr>
+      <li class="weather-item">Wind: 5.84</li>
+      <hr>
+      <li class="weather-item">Pressure: 1015</li>
+      
+    </ul>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+   $(document).ready(function() {});
+    
+
+
+
+</script>
+</body>
+</html>
