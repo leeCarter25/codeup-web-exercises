@@ -14,15 +14,12 @@
 <body>
 <div id='map' style='width: 100%; height: 500px;'></div>
 <script>
-    // TO MAKE THE MAP APPEAR YOU MUST
-    // ADD YOUR ACCESS TOKEN FROM
-    // https://account.mapbox.com
     mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydGVyLWxlZSIsImEiOiJjbDd2MGNiNnMwNnlhM29tczNtbDVkdnJxIn0.YF4dGna5RU4YHiptKPyKFg';
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [-119.043732, 35.393528], // starting position [lng, lat]
-        zoom: 17, // starting zoom
+        center: [-96.808891, 32.779167], // starting position [lng, lat]
+        zoom: 9, // starting zoom
         projection: 'globe' // display the map as a 3D globe
     });
     map.on('style.load', () => {
@@ -41,24 +38,27 @@
             });
     }
 
-    geocode('2000 Las Vegas Blvd S, Las Vegas, NV 89104', MAPBOX_TOKEN).then(function(data) {
+    geocode('Whitefish, Montana', MAPBOX_TOKEN).then(function(data) {
         map.setCenter(data);
     });
+    let lng = -157.8060;
+    let lat = 21.2620;
 
-    let popup = new mapboxgl.Popup()
-        .setHTML('Top Of The World');
-
-    let marker = new mapboxgl.Marker({draggable: true})
-        .setLngLat([-115.156122984327, 36.14768625])
-        .setPopup(popup)
-        .addTo(map);
-
-
-
-
-
-
-
+    function reverseGeocode(coordinates, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+            })
+    //to get all the data from the request, comment out the following three lines...
+    .then(function(data) {
+        return data.features[0].place_name;
+    });
+    }
+    reverseGeocode({lng: lng, lat: lat}, MAPBOX_TOKEN).then(function(address) {
+    console.log(address);
+    });
 
 
 </script>
