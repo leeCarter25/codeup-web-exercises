@@ -53,6 +53,26 @@
         .setPopup(popup)
         .addTo(map);
 
+    let restaurants = [
+        {
+            name: 'Top Of The World',
+            address: ' 2000 Las Vegas Blvd S, Las Vegas, NV 89104',
+            message: 'It\'s great!'
+        },
+        {
+            name: 'Bestia',
+            address: '2121 E 7th Pl, Los Angeles, CA 90021',
+            message: 'Too good!'
+        },
+        {
+            name: 'The Fish Market',
+            address: '750 N Harbor Dr, San Diego, CA 92101',
+            message: 'Awesome!'
+        }
+    ];
+    restaurants.forEach(function (restaurant) {
+        document.map(restaurant.name + author + message);
+    });
 
 
 

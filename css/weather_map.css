@@ -9,12 +9,20 @@ h6 {
     background-color: rgba(0, 0, 255, 0.78);
     margin-left: 1em;
 }
-.card {
-    text-align: center;
-    margin: 2em 0px;
+.inputSubmit {
+    background-color: rgba(0, 0, 255, 0.78);
 }
-.w-icon {
-    width: 5rem;
-    height: 5rem;
-    margin-left: 6em;
-}
+
+/*.card {*/
+/*    text-align: center;*/
+/*    margin: 2em 0px;*/
+/*}*/
+/*.w-icon {*/
+/*    width: 5rem;*/
+/*    height: 5rem;*/
+/*    margin-left: 6em;*/
+/*}*/
+/*#text {*/
+/*    padding: 0;*/
+/*    margin-left: 7em;*/
+/*}*/
