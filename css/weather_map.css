@@ -3,7 +3,7 @@ h6 {
     display: block;
     position: absolute;
     right: 15px;
-    top: 1rem;
+    top: -0.2em;
 }
 .btn-primary {
     background-color: rgba(0, 0, 255, 0.78);
@@ -12,6 +12,18 @@ h6 {
 .inputSubmit {
     background-color: rgba(0, 0, 255, 0.78);
 }
+.card-header {
+    margin-left: 4em;
+}
+.temp {
+    list-style-type: none;
+}
+.weather-item {
+    list-style-type: none;
+}
+
+
+
 
 /*.card {*/
 /*    text-align: center;*/

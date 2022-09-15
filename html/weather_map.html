@@ -6,58 +6,90 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="../css/weather_map.css">
 </head>
 <body>
-
 <div class="jumbotron" style="margin-bottom:0px; color:white; background-color: rgba(0, 0, 255, 0.78);">
-    <h2 class="text-left" style="font-size:45px; font-weight:300;">Weather App</h2>
+    <h2 class="text-left" style="font-size:40px; font-weight:300;">Weather App</h2>
     <h6 id="current-city-header" style="font-size:20px; font-weight:100;">Current city: <span id="text-header"></span></h6>
 </div>
 
-<main>
-    <div>
-        Place <input id="current-city" type="text" placeholder>
-        <button id="button" type="button" class="btn-primary" style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;">Find
-        </button>
-        <p id="text"></p>
-
-    </div>
-</main>
-
-<div class="container">
-    <div id="weather-body">
-        <div class="card">
-            <p class="temp text-center">2020-04-06</p>
-            <p class="desc text-center">75.45 &degF / 76.98 &degF</p>
-            <img class="text-center" src="" alt="weather icon picture">
-            <p class="humi px-2">Humidity: 91</p>
-            <p class="wind px-2">Wind Speed: 54.98 mph</p>
-            <p class="pres px-2">Pressure: 187</p>
-            <!--        <div id="temp">2020-04-06</div>-->
-            <!--        <div id="desc">75.45 &degF / 76.98 &degF</div>-->
-            <!--        <div id="humi">91</div>-->
-            <!--        <div id="wind">54.98 mph</div>-->
-            <!--        <div id="pres">187</div>-->
-        </div>
-    </div>
+<div class="row form-group form-inline" id="rowDiv"> Place
+    <input type="text" name="city" id="current-city" class="form-control" placeholder>
+    <button id="submitWeather" class="btn-primary" style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;">Find</button>
+    <span id="error"></span>
 </div>
 
-<!--<div class="container">-->
-<!--    &lt;!&ndash; The HTML element that serves as the Mapbox container &ndash;&gt;-->
-<!--    <div class="d-flex align-self-end my-4" id='map'></div>-->
+<div id="show"></div>
+
+<!--<main>-->
+<!--<div>-->
+<!--    Place <input id='current-city' type="text" placeholder>-->
+<!--    <button id="button" type="button" class="btn-primary" style="&#45;&#45;bs-btn-padding-y: .40rem; &#45;&#45;bs-btn-padding-x: .75rem; &#45;&#45;bs-btn-font-size: .75rem;">Find-->
+<!--</button>-->
+<!--    <p id="text"></p>-->
 <!--</div>-->
-<!--<h1 id="coords"></h1>-->
+<!--</main>-->
+
+<!--<div class="container">-->
+<!--    <div id="weather-body">-->
+<!--        <div class="card">-->
+<!--            <p class="temp text-center">2020-04-06</p>-->
+<!--            <p class="desc text-center">75.45 &degF / 76.98 &degF</p>-->
+<!--            <img class="text-center" src="" alt="weather icon picture">-->
+<!--            <p class="humi px-2">Humidity: 91</p>-->
+<!--            <p class="wind px-2">Wind Speed: 54.98 mph</p>-->
+<!--            <p class="pres px-2">Pressure: 187</p>-->
+<!--            &lt;!&ndash;        <div id="temp">2020-04-06</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <div id="desc">75.45 &degF / 76.98 &degF</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <div id="humi">91</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <div id="wind">54.98 mph</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <div id="pres">187</div>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        2022-04-06
+    </div>
+    <ul class="list-group list-group-flush" id="current-weather-items">
+        <li class="temp"> </li>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+        <hr>
+        <li class="weather-item">Humidity: <span id="humi"></span></li>
+        <hr>
+        <li class="weather-item">Wind: <span id="wind"></span></li>
+        <hr>
+        <li class="weather-item">Pressure: <span id="pres"></span></li>
+
+    </ul>
+</div>
+
 <div id='map' style='width: 100%; height: 500px;'></div>
+
+
+<script src="../js/keys.js"></script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
+<script src="../js/mapbox-geocoder-utils.js"></script>
+
 <!--<script src="../js/mapbox-geocoder-utils.js"></script>-->
-<script src="../js/keys.js"></script>
+
 
 
 <script>
+
+
     //mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydGVyLWxlZSIsImEiOiJjbDd2MGNiNnMwNnlhM29tczNtbDVkdnJxIn0.YF4dGna5RU4YHiptKPyKFg';
     mapboxgl.accessToken = MAPBOX_TOKEN;
     let map = new mapboxgl.Map({
@@ -66,16 +98,117 @@
         center: [-77.0502, 38.8893], // starting position [lng, lat]
         zoom: 11 // starting zoom
     });
-    let marker = new mapboxgl.Marker({draggable: true})
-        .setLngLat([-77.0502, 38.8893])
-        // .setPopup(popup)
-        .addTo(map);
 
-    // reverse geocode method from mapbox-geocoder-utils.js
-    reverseGeocode({lng: -77.0502 , lat: 38.8893}, MAPBOX_TOKEN).then(function(results) {
-        // logs the address for The Alamo
-        console.log(results);
-    });
+    $('#submitWeather').on('click', function() {
+        let currentCity = $('#current-city').val();
+        //console.log(currentCity);
+        $('#text-header').text(currentCity);
+        $('#current-city').val('');
+
+        // console.log(currentCity);
+
+        geocode(currentCity, MAPBOX_TOKEN).then(function(data) {
+            // map.setCenter(data);
+            console.log(data);
+        });
+
+        // reverse geocode method from mapbox-geocoder-utils.js
+        reverseGeocode(currentCity, MAPBOX_TOKEN).then(function(results) {
+            // logs the address for The Alamo
+            console.log(results);
+        });
+
+        // $.get('https://api.openweathermap.org/data/2.5/forecast', {
+        //     appid: WEATHER_APP_ID,
+        //     lat: lat,
+        //     lon: lon,
+        //     units: 'imperial'
+        // }).done(function(data) {
+        //     // console.log(data);
+        //
+        //     // create HTML string
+        //     let weatherHTML = createHTML(data);
+        //
+        //     // update the DOM with the new HTML
+        //     $('.card').html(weatherHTML);
+        // });
+
+
+
+
+
+    })
+
+    // function reverseGeocode(coordinates, token) {
+    //     var baseUrl = 'https://api.mapbox.com';
+    //     var endPoint = '/geocoding/v5/mapbox.places/';
+    //     return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
+    //         .then(function(res) {
+    //             return res.json();
+    //         })
+    //         //to get all the data from the request, comment out the following three lines...
+    //         .then(function(data) {
+    //             return data.features[0].place_name;
+    //         });
+    // }
+    //
+
+    //
+
+    //
+    //
+    // let marker = new mapboxgl.Marker({draggable: true})
+    //     .setLngLat([-77.0502, 38.8893])
+    //     // .setPopup(popup)
+    //     .addTo(map);
+    //
+    // // reverse geocode method from mapbox-geocoder-utils.js
+    // reverseGeocode({lng: -77.0502 , lat: 38.8893}, MAPBOX_TOKEN).then(function(results) {
+    //     // logs the address for The Alamo
+    //     console.log(results);
+    // });
+    //
+    // $(document).ready(function() {
+    //
+    //     $('#submitWeather').click(function() {
+    //
+    //         let city = $('#current-city').val();
+    //
+    //         if(city != '') {
+    //
+    //             $.ajax({
+    //
+    //                 url:'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&appid=WEATHER_APP_ID',
+    //                 type: 'GET',
+    //                 dataType: 'jsonp',
+    //                 success: function(data) {
+    //                     let widget = show(data);
+    //
+    //                     $('#show').html(widget);
+    //
+    //                     $('#city').val('');
+    //
+    //
+    //                 }
+    //
+    //
+    //
+    //             });
+    //
+    //         } else {
+    //             $('#error').html('Field cannot be empty');
+    //         }
+    //
+    //     });
+    // });
+    //
+    // function show(data) {
+    //     return '<h3><strong>Description</strong>: '+ data.weather[0].description + '</h3>' +
+    //         '<h3><strong>Humidity</strong>: '+ data.main.humidity +'</h3>' +
+    //         '<h3><strong>Wind</strong>: '+ data.wind.speed +'</h3>' +
+    //         '<h3><strong>Pressure</strong>: '+ data.pressure.value +'</h3>';
+    // }
+
 
 
 

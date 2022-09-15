@@ -1,6 +1,6 @@
 "use strict";
 
-/*
+/***
  * geocode is a method to search for coordinates based on a physical address and return
  * @param {string} search is the address to search for the geocoded coordinates
  * @param {string} token is your API token for MapBox
@@ -11,10 +11,9 @@
  *  geocode("San Antonio", API_TOKEN_HERE).then(function(results) {
  *      // do something with results
  *  })
- *
- /
+ */
 function geocode(search, token) {
-    var baseUrl = 'https://api.mapbox.com/';
+    var baseUrl = 'https://api.mapbox.com';
     var endPoint = '/geocoding/v5/mapbox.places/';
     return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
         .then(function(res) {
@@ -26,8 +25,7 @@ function geocode(search, token) {
 }
 
 
-/
- * reverseGeocode is a method to search for a physical address based on inputted coordinates
+/*** reverseGeocode is a method to search for a physical address based on inputted coordinates
  * @param {object} coordinates is an object with properties "lat" and "lng" for latitude and longitude
  * @param {string} token is your API token for MapBox
  * @returns {Promise} a promise containing the string of the closest matching location to the coordinates provided
@@ -40,7 +38,7 @@ function geocode(search, token) {
  *
  */
 function reverseGeocode(coordinates, token) {
-    var baseUrl = 'https://api.mapbox.com/';
+    var baseUrl = 'https://api.mapbox.com';
     var endPoint = '/geocoding/v5/mapbox.places/';
     return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
         .then(function(res) {
