@@ -12,14 +12,21 @@ h6 {
 .inputSubmit {
     background-color: rgba(0, 0, 255, 0.78);
 }
-.card-header {
-    margin-left: 4em;
-}
+/*.card-header {*/
+/*    margin-left: 4em;*/
+/*}*/
 .temp {
     list-style-type: none;
 }
 .weather-item {
     list-style-type: none;
+}
+.w-icon {
+    width: 50%;
+    height: 50%;
+}
+input#current-city.form-control {
+    margin-right: 20em;
 }
 
 

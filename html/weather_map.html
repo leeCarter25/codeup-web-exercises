@@ -8,6 +8,7 @@
     <title>Document</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="../css/weather_map.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
 <div class="jumbotron" style="margin-bottom:0px; color:white; background-color: rgba(0, 0, 255, 0.78);">
@@ -15,56 +16,39 @@
     <h6 id="current-city-header" style="font-size:20px; font-weight:100;">Current city: <span id="text-header"></span></h6>
 </div>
 
-<div class="row form-group form-inline" id="rowDiv"> Place
-    <input type="text" name="city" id="current-city" class="form-control" placeholder>
-    <button id="submitWeather" class="btn-primary" style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;">Find</button>
-    <span id="error"></span>
+<div class="container mb-3 pt-4">
+    <div class="row" id="rowDiv">
+        <div class="col-auto">
+            Place
+        </div>
+        <div class="col-2">
+            <input type="text" name="city" id="current-city" class="form-control" placeholder>
+        </div>
+        <div class="col">
+            <button id="submitWeather" class="btn-primary" style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;">Find</button>
+        </div>
+    </div>
 </div>
 
-<div id="show"></div>
 
-<!--<main>-->
-<!--<div>-->
-<!--    Place <input id='current-city' type="text" placeholder>-->
-<!--    <button id="button" type="button" class="btn-primary" style="&#45;&#45;bs-btn-padding-y: .40rem; &#45;&#45;bs-btn-padding-x: .75rem; &#45;&#45;bs-btn-font-size: .75rem;">Find-->
-<!--</button>-->
-<!--    <p id="text"></p>-->
-<!--</div>-->
-<!--</main>-->
+<div class="container mb-3 pt-4">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header text-center">
+            2022-04-06
+        </div>
+        <ul class="list-group list-group-flush" id="current-weather-items">
+            <li class="temp"> </li>
+            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+            <hr>
+            <li class="weather-item">Humidity: <span id="humi"></span></li>
+            <hr>
+            <li class="weather-item">Wind: <span id="wind"></span></li>
+            <hr>
+            <li class="weather-item">Pressure: <span id="pres"></span></li>
 
-<!--<div class="container">-->
-<!--    <div id="weather-body">-->
-<!--        <div class="card">-->
-<!--            <p class="temp text-center">2020-04-06</p>-->
-<!--            <p class="desc text-center">75.45 &degF / 76.98 &degF</p>-->
-<!--            <img class="text-center" src="" alt="weather icon picture">-->
-<!--            <p class="humi px-2">Humidity: 91</p>-->
-<!--            <p class="wind px-2">Wind Speed: 54.98 mph</p>-->
-<!--            <p class="pres px-2">Pressure: 187</p>-->
-<!--            &lt;!&ndash;        <div id="temp">2020-04-06</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;        <div id="desc">75.45 &degF / 76.98 &degF</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;        <div id="humi">91</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;        <div id="wind">54.98 mph</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;        <div id="pres">187</div>&ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<div class="card" style="width: 18rem;">
-    <div class="card-header">
-        2022-04-06
+        </ul>
     </div>
-    <ul class="list-group list-group-flush" id="current-weather-items">
-        <li class="temp"> </li>
-        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-        <hr>
-        <li class="weather-item">Humidity: <span id="humi"></span></li>
-        <hr>
-        <li class="weather-item">Wind: <span id="wind"></span></li>
-        <hr>
-        <li class="weather-item">Pressure: <span id="pres"></span></li>
 
-    </ul>
 </div>
 
 <div id='map' style='width: 100%; height: 500px;'></div>
@@ -78,6 +62,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
@@ -88,6 +74,69 @@
 
 
 <script>
+    'use strict';
+
+    function createHTML(data) {
+
+        let date = [];
+        let temp1 = '';
+        let temp2 = '';
+        let humi = '';
+        let pres = '';
+        let icon = '';
+        let wind = '';
+
+        let newDate = '';
+
+
+        let html = '';
+
+        for(let i = 0; i < 40; i += 9) {
+
+            date = data.list[i].dt_txt.split(' ');
+            newDate = date[0];
+
+            temp1 = data.list[i].main.temp_min;
+
+            temp2 = data.list[i].main.temp_max;
+
+            humi = data.list[i].main.humidity;
+
+            wind = data.list[i].wind.speed;
+
+            pres = data.list[i].main.pressure;
+
+            icon = data.list[i].weather[0].icon;
+
+            html += '<div class="card-header">\n' +
+                newDate +
+                '    </div>\n' +
+                '    <ul class="list-group list-group-flush" id="current-weather-items">\n' +
+                '        <li class="temp">' + temp1 + '&degF / ' + temp2 + '&degF </li>\n' +
+                '        <img src="http://openweathermap.org/img/wn/' + icon + '.png" alt="weather icon" class="w-icon">\n' +
+                '        <hr>\n' +
+                '        <li class="weather-item">Humidity: ' + humi + ' </li>\n' +
+                '        <hr>\n' +
+                '        <li class="weather-item">Wind: ' + wind + ' mph</li>\n' +
+                '        <hr>\n' +
+                '        <li class="weather-item">Pressure: ' + pres + ' </li>\n' +
+                '\n' +
+                '    </ul>';
+
+
+        }
+
+        return html;
+
+
+
+
+
+
+
+
+
+    }
 
 
     //mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydGVyLWxlZSIsImEiOiJjbDd2MGNiNnMwNnlhM29tczNtbDVkdnJxIn0.YF4dGna5RU4YHiptKPyKFg';
@@ -108,14 +157,37 @@
         // console.log(currentCity);
 
         geocode(currentCity, MAPBOX_TOKEN).then(function(data) {
+            let lng = data[0];
+            let lat = data[1];
             // map.setCenter(data);
-            console.log(data);
+            console.log(lng);
+            console.log(lat);
+
+            $.get('https://api.openweathermap.org/data/2.5/forecast', {
+                appid: WEATHER_APP_ID,
+                lat: lat,
+                lon: lng,
+                units: 'imperial'
+            }).done(function(data) {
+                console.log(data);
+                console.log(data.city.name);
+
+                // console.log(data);
+
+                // create HTML string
+                let weatherHTML = createHTML(data);
+                // console.log(weatherHTML);
+
+                // update the DOM with the new HTML
+                $('.card').html(weatherHTML);
+            });
         });
+
 
         // reverse geocode method from mapbox-geocoder-utils.js
         reverseGeocode(currentCity, MAPBOX_TOKEN).then(function(results) {
             // logs the address for The Alamo
-            console.log(results);
+            // console.log(results);
         });
 
         // $.get('https://api.openweathermap.org/data/2.5/forecast', {
