@@ -12,9 +12,6 @@ h6 {
 .inputSubmit {
     background-color: rgba(0, 0, 255, 0.78);
 }
-/*.card-header {*/
-/*    margin-left: 4em;*/
-/*}*/
 .temp {
     list-style-type: none;
 }
@@ -26,8 +23,28 @@ h6 {
     height: 50%;
 }
 input#current-city.form-control {
-    margin-right: 20em;
+    width: 200px;
+
 }
+div.container {
+    margin-right: 12em;
+    padding: 0;
+
+}
+button#submitWeather {
+    margin: 5px 0 0 3em;
+}
+div.col-auto {
+    margin-top: 5px;
+}
+div.col-2 {
+    padding: 0;
+}
+h6#current-city-header {
+    margin-top: 15px;
+}
+
+
 
 
 

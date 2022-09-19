@@ -11,12 +11,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
 <div class="jumbotron" style="margin-bottom:0px; color:white; background-color: rgba(0, 0, 255, 0.78);">
     <h2 class="text-left" style="font-size:40px; font-weight:300;">Weather App</h2>
     <h6 id="current-city-header" style="font-size:20px; font-weight:100;">Current city: <span id="text-header"></span></h6>
 </div>
 
-<div class="container mb-3 pt-4">
+<div class="container">
     <div class="row" id="rowDiv">
         <div class="col-auto">
             Place
@@ -31,7 +35,9 @@
 </div>
 
 
-<div class="container mb-3 pt-4">
+<div class="container">
+    <div class="row  mb-3">
+        <div class="col-lg-4">
     <div class="card" style="width: 18rem;">
         <div class="card-header text-center">
             2022-04-06
@@ -48,10 +54,32 @@
 
         </ul>
     </div>
+    </div>
+    </div>
 
 </div>
 
+<style>
+    .geocoder {
+        position: absolute;
+        z-index: 1;
+        width: 50%;
+        left: 50%;
+        margin-left: -25%;
+        top: 10px;
+    }
+    .mapboxgl-ctrl-geocoder {
+        min-width: 100%;
+    }
+    #map {
+        margin-top: 75px;
+    }
+</style>
+
 <div id='map' style='width: 100%; height: 500px;'></div>
+
+<div id="geocoder" class="geocoder"></div>
+
 
 
 <script src="../js/keys.js"></script>
@@ -108,45 +136,60 @@
 
             icon = data.list[i].weather[0].icon;
 
-            html += '<div class="card-header">\n' +
-                newDate +
-                '    </div>\n' +
-                '    <ul class="list-group list-group-flush" id="current-weather-items">\n' +
-                '        <li class="temp">' + temp1 + '&degF / ' + temp2 + '&degF </li>\n' +
-                '        <img src="http://openweathermap.org/img/wn/' + icon + '.png" alt="weather icon" class="w-icon">\n' +
-                '        <hr>\n' +
-                '        <li class="weather-item">Humidity: ' + humi + ' </li>\n' +
-                '        <hr>\n' +
-                '        <li class="weather-item">Wind: ' + wind + ' mph</li>\n' +
-                '        <hr>\n' +
-                '        <li class="weather-item">Pressure: ' + pres + ' </li>\n' +
-                '\n' +
-                '    </ul>';
-
+           html += '<div class=card d-flex mx-2>' +
+            '    <div class=col>' +
+                '<div class="card-header text-center">' + newDate +
+                '    </div>' +
+                '    <ul id="current-weather-items">' +
+                '        <li class="temp">' + temp1 + '&degF / ' + temp2 + '&degF </li>' +
+                '        <img src="http://openweathermap.org/img/wn/' + icon + '.png" alt="weather icon" class="w-icon d-flex flex-center">' +
+                '        <hr>' +
+                '        <li class="weather-item">Humidity: ' + humi + ' </li>' +
+                '        <hr>' +
+                '        <li class="weather-item">Wind: ' + wind + ' mph</li>' +
+                '        <hr>' +
+                '        <li class="weather-item">Pressure: ' + pres + ' </li>' +
+                '        </ul>' +
+                '        </div>' +
+                '        </div>';
 
         }
 
         return html;
-
-
-
-
-
-
-
-
-
     }
 
 
-    //mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydGVyLWxlZSIsImEiOiJjbDd2MGNiNnMwNnlhM29tczNtbDVkdnJxIn0.YF4dGna5RU4YHiptKPyKFg';
+
+
+
+    // mapboxgl.accessToken = MAPBOX_TOKEN;
+    // let map = new mapboxgl.Map({
+    //     container: 'map', // container ID
+    //     style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    //     center: [-77.0502, 38.8893], // starting position [lng, lat]
+    //     zoom: 11 // starting zoom
+    // });
+
+
+
+
     mapboxgl.accessToken = MAPBOX_TOKEN;
-    let map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [-77.0502, 38.8893], // starting position [lng, lat]
-        zoom: 11 // starting zoom
+    const map = new mapboxgl.Map({
+        container: 'map',
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-79.4512, 43.6568],
+        zoom: 13
     });
+
+    // Add the control to the map.
+    const currentCity = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    });
+
+    document.getElementById('submitWeather').appendChild(currentCity.onAdd(map));
+
 
     $('#submitWeather').on('click', function() {
         let currentCity = $('#current-city').val();
@@ -154,9 +197,8 @@
         $('#text-header').text(currentCity);
         $('#current-city').val('');
 
-        // console.log(currentCity);
 
-        geocode(currentCity, MAPBOX_TOKEN).then(function(data) {
+        geocode(currentCity, MAPBOX_TOKEN).then(function (data) {
             let lng = data[0];
             let lat = data[1];
             // map.setCenter(data);
@@ -168,118 +210,39 @@
                 lat: lat,
                 lon: lng,
                 units: 'imperial'
-            }).done(function(data) {
+            }).done(function (data) {
                 console.log(data);
                 console.log(data.city.name);
 
-                // console.log(data);
 
                 // create HTML string
                 let weatherHTML = createHTML(data);
-                // console.log(weatherHTML);
 
                 // update the DOM with the new HTML
                 $('.card').html(weatherHTML);
+
+
             });
         });
+    });
 
 
         // reverse geocode method from mapbox-geocoder-utils.js
-        reverseGeocode(currentCity, MAPBOX_TOKEN).then(function(results) {
+        reverseGeocode(currentCity, MAPBOX_TOKEN).then(function (results) {
             // logs the address for The Alamo
             // console.log(results);
         });
 
-        // $.get('https://api.openweathermap.org/data/2.5/forecast', {
-        //     appid: WEATHER_APP_ID,
-        //     lat: lat,
-        //     lon: lon,
-        //     units: 'imperial'
-        // }).done(function(data) {
-        //     // console.log(data);
-        //
-        //     // create HTML string
-        //     let weatherHTML = createHTML(data);
-        //
-        //     // update the DOM with the new HTML
-        //     $('.card').html(weatherHTML);
-        // });
 
 
 
 
 
-    })
 
-    // function reverseGeocode(coordinates, token) {
-    //     var baseUrl = 'https://api.mapbox.com';
-    //     var endPoint = '/geocoding/v5/mapbox.places/';
-    //     return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
-    //         .then(function(res) {
-    //             return res.json();
-    //         })
-    //         //to get all the data from the request, comment out the following three lines...
-    //         .then(function(data) {
-    //             return data.features[0].place_name;
-    //         });
-    // }
-    //
 
-    //
 
-    //
-    //
-    // let marker = new mapboxgl.Marker({draggable: true})
-    //     .setLngLat([-77.0502, 38.8893])
-    //     // .setPopup(popup)
-    //     .addTo(map);
-    //
-    // // reverse geocode method from mapbox-geocoder-utils.js
-    // reverseGeocode({lng: -77.0502 , lat: 38.8893}, MAPBOX_TOKEN).then(function(results) {
-    //     // logs the address for The Alamo
-    //     console.log(results);
-    // });
-    //
-    // $(document).ready(function() {
-    //
-    //     $('#submitWeather').click(function() {
-    //
-    //         let city = $('#current-city').val();
-    //
-    //         if(city != '') {
-    //
-    //             $.ajax({
-    //
-    //                 url:'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial' + '&appid=WEATHER_APP_ID',
-    //                 type: 'GET',
-    //                 dataType: 'jsonp',
-    //                 success: function(data) {
-    //                     let widget = show(data);
-    //
-    //                     $('#show').html(widget);
-    //
-    //                     $('#city').val('');
-    //
-    //
-    //                 }
-    //
-    //
-    //
-    //             });
-    //
-    //         } else {
-    //             $('#error').html('Field cannot be empty');
-    //         }
-    //
-    //     });
-    // });
-    //
-    // function show(data) {
-    //     return '<h3><strong>Description</strong>: '+ data.weather[0].description + '</h3>' +
-    //         '<h3><strong>Humidity</strong>: '+ data.main.humidity +'</h3>' +
-    //         '<h3><strong>Wind</strong>: '+ data.wind.speed +'</h3>' +
-    //         '<h3><strong>Pressure</strong>: '+ data.pressure.value +'</h3>';
-    // }
+
+
 
 
 
