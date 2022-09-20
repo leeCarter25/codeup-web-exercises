@@ -85,7 +85,7 @@ const userList = users.reduce((name, user) => {
         return name + user.name + '.';
     }
     // return user.name !== 'justin' ? name + user.name + ", " : name + user.name + ".";
-}, '');
+}, 'Your instructors are: ');
 console.log(userList);
 
 // BONUS Use .reduce to get the unique list of languages from the list of users.
